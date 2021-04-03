@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: atmo-deployment
+  labels:
+    app: atmo
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: atmo
+
+  template:
+    metadata:
+      labels:
+        app: atmo
+
+    spec:
+      containers:
+        - name: atmo
+          image: suborbital/atmo:latest
+          command: ["atmo"]
+
+          ports:
+            - containerPort: 8080
+
+          env:
+            - name: ATMO_HTTP_PORT
+              value: "8080"
+            - name: ATMO_LOG_LEVEL
+              value: "info"
