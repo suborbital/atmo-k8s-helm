@@ -3,6 +3,7 @@ kind: Deployment
 
 metadata:
   name: atmo-deployment
+  namespace: suborbital
   labels:
     app: atmo
 
@@ -21,14 +22,35 @@ spec:
     spec:
       containers:
         - name: atmo
-          image: suborbital/atmo:latest
+          image: suborbital/atmo:wait
           command: ["atmo"]
+          # if you are using your own image with a bundle baked in,
+          # you do not need the --wait flag, though it won't do any harm
+          args: ["--wait"]
 
           ports:
             - containerPort: 8080
+            - containerPort: 443
 
           env:
+            # uncomment and set your domain name to use LetsEncrypt
+            # - name: ATMO_DOMAIN
+            #   value: "example.com"
+            
             - name: ATMO_HTTP_PORT
               value: "8080"
+            
             - name: ATMO_LOG_LEVEL
+              # set the log level to 'debug' to see more detailed logs
               value: "info"
+
+          volumeMounts:
+            - name: bundle-storage
+              mountPath: /home/atmo
+
+      volumes:
+        - name: bundle-storage
+          persistentVolumeClaim:
+            # ensure you apply one of the atmo-*-pvc.yml manifests in this 
+            # directory to match the k8s environment you're using (K3s, GCP, EKS, etc.)
+            claimName: atmo-bundle-pvc
