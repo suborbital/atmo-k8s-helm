@@ -38,6 +38,8 @@ spec:
             #   value: "example.com"
             
             - name: ATMO_HTTP_PORT
+              # this should (almost) always be set to 8080
+              # as port 80 is intentionally not available
               value: "8080"
             
             - name: ATMO_LOG_LEVEL

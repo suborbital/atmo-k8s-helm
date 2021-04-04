@@ -1,16 +1,23 @@
 apiVersion: v1
 kind: Service
+
 metadata:
   name: atmo-svc
   namespace: suborbital
+
 spec:
   selector:
     app: atmo
+
   ports:
+    # port 80 is used for HTTP traffic or the LetsEncrypt challenge server
     - port: 80
       targetPort: 8080
       name: http
+
+    # port 443 is used for HTTPS traffic using LetsEncrypt if ATMO_DOMAIN is set
     - port: 443
       targetPort: 443
       name: https
+
   type: LoadBalancer

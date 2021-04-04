@@ -1,12 +1,18 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
+
 metadata:
   name: atmo-bundle-pvc
   namespace: suborbital
+
 spec:
   accessModes:
     - ReadWriteOnce
+
+  # this storageClass is specific to k3s, use a different pvc 
+  # manifest if you are running in a different k8s environment
   storageClassName: local-path
+  
   resources:
     requests:
       storage: 1Gi
