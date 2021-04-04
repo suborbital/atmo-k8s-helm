@@ -1,6 +1,6 @@
 # Deploy Atmo on Kubernetes (+Helm) 📦
 
-This repo contains K8s manifests that can be used to install [Atmo](https://github.com/suborbital/atmo) on Kubernetes.
+This repo contains K8s manifests that can be used to install [Atmo](https://github.com/suborbital/atmo) on Kubernetes. It is currently using an experimental version of Atmo that includes a `wait` feature (`suborbital/atmo:wait`), which is explained below.
 
 **Install them in this order** (using `kubectl apply -f <file>`):
 - `k8s/atmo-*-pvc.yml` are PersistentVolumeClaim manifests for various K8s environments
