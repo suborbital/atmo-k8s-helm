@@ -9,6 +9,12 @@ This repo contains K8s manifests that can be used to install [Atmo](https://gith
 
 All resources are installed in the `suborbital` namespace. By default, Atmo is launched in 'wait' mode (meaning it is waiting for a bundle to be uploaded).
 
+A Namespace can be created by running the kubectl create namespace command shown below:
+
+```
+kubectl create namespace suborbital
+```
+
 To upload a bundle once Atmo is running in your cluster, use `subo` and `kubectl`.
 
 First, [build your application bundle](https://atmo.suborbital.dev/usage/building-a-bundle):
