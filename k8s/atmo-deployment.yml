@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: atmo
-          image: suborbital/atmo:wait
+          image: suborbital/atmo:latest
           command: ["atmo"]
           # if you are using your own image with a bundle baked in,
           # you do not need the --wait flag, though it won't do any harm
